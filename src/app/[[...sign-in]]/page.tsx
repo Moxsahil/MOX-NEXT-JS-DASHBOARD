@@ -21,7 +21,7 @@ const LoginPage = () => {
   }, [user, router]);
 
   return (
-    <div className="h-screen flex items-center justify-center bg-moxSkyLight">
+    <div className="h-screen flex items-center justify-center bg-red-200">
       <SignIn.Root>
         <SignIn.Step
           name="start"

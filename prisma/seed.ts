@@ -55,7 +55,7 @@ async function main() {
   }
 
   // TEACHER
-  for (let i = 1; i <=5; i++) {
+  for (let i = 1; i <= 15; i++) {
     await prisma.teacher.create({
       data: {
         id: `teacher${i}`, // Unique ID for the teacher
@@ -109,7 +109,7 @@ async function main() {
   }
 
   // STUDENT
-  for (let i = 1; i <= 5; i++) {
+  for (let i = 1; i <= 50; i++) {
     await prisma.student.create({
       data: {
         id: `student${i}`, 
