@@ -117,13 +117,26 @@ export const lessonSchema = z.object({
   id: z.coerce.number().optional(),
   name: z.string().min(1, { message: "Lesson name is required!" }),
   day: z.enum(["MONDAY", "TUESDAY", "WEDNESDAY", "THURSDAY", "FRIDAY"], {
-    message: "Day is required!",
+    message: "Day is required and must be a valid weekday!",
   }),
   startTime: z.coerce.date({ message: "Start time is required!" }),
   endTime: z.coerce.date({ message: "End time is required!" }),
-  subjectId: z.coerce.number().min(1, { message: "Subject ID is required!" }),
-  classId: z.coerce.number().min(1, { message: "Class ID is required!" }),
-  teacherId: z.string().min(1, { message: "Teacher ID is required!" }),
+  subjectId: z.coerce.number({ message: "Subject ID is required!" }),
+  subject: z.object({
+    id: z.coerce.number(),
+    name: z.string(),
+  }).optional(),
+  classId: z.coerce.number({ message: "Class ID is required!" }),
+  class: z.object({
+    id: z.coerce.number(),
+    name: z.string(),
+  }).optional(),
+  teacherId: z.string({ message: "Teacher ID is required!" }),
+  teacher: z.object({
+    id: z.string(),
+    name: z.string(),
+    surname: z.string(),
+  }).optional(),
 });
 
 export type LessonSchema = z.infer<typeof lessonSchema>;
@@ -149,11 +162,11 @@ export const announcementSchema = z.object({
   title: z.string().min(1, { message: "Announcement title is required!" }),
   description: z.string().optional().default(''),  
   date: z.coerce.date({ message: "Date is required!" }),
-  classId: z.coerce.number().optional(),  
+  classId: z.coerce.number().optional(),
   class: z.object({
-    id: z.coerce.number(),  
-    name: z.string(),  
-  }).optional(),  
+    id: z.coerce.number(), 
+    name: z.string(), 
+  }).optional(), 
 });
 
 export type AnnouncementSchema = z.infer<typeof announcementSchema>;
@@ -161,24 +174,13 @@ export type AnnouncementSchema = z.infer<typeof announcementSchema>;
 export const resultSchema = z.object({
   id: z.coerce.number().optional(), 
   score: z.coerce.number().min(0, { message: "Score must be a non-negative number!" }), 
-  
-  examId: z.coerce.number().optional(),  
-  exam: z.object({
-    id: z.coerce.number(),  
-    title: z.string(),  
-  }).optional(), 
-  
-  assignmentId: z.coerce.number().optional(),  
-  assignment: z.object({
-    id: z.coerce.number(),  
-    title: z.string(),  
-  }).optional(),  
-  
+
   studentId: z.string().min(1, { message: "Student ID is required!" }),  
   student: z.object({
     id: z.string(),  
     name: z.string(),  
   }),
+  students: z.array(z.string()),
 });
 
 export type ResultSchema = z.infer<typeof resultSchema>;

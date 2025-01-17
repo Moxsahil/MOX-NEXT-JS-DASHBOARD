@@ -68,17 +68,17 @@ const LessonForm = ({
           error={errors?.name}
         />
         <InputField
-          label="Start Time"
+          label="Start Date"
           name="startTime"
-          type="time"
+          type="date"
           defaultValue={data?.startTime}
           register={register}
           error={errors?.startTime}
         />
         <InputField
-          label="End Time"
+          label="End Date"
           name="endTime"
-          type="time"
+          type="date"
           defaultValue={data?.endTime}
           register={register}
           error={errors?.endTime}
