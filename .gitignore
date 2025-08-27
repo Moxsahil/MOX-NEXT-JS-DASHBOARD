@@ -29,6 +29,10 @@ yarn-error.log*
 .env
 .env*.local
 
+# docker files with sensitive data
+docker-compose.yml
+docker-compose.*.yml
+
 # vercel
 .vercel
 
