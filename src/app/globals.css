@@ -1,20 +1,127 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Poppins:wght@300;400;500;600;700;800&display=swap');
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+  
+  body {
+    @apply bg-dark-primary text-dark-text-primary font-sans antialiased;
+    font-feature-settings: 'cv11', 'ss01';
+    font-synthesis: none;
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+  
+  * {
+    @apply border-dark-border-primary;
+  }
+}
+
+@layer components {
+  .card-modern {
+    @apply bg-dark-secondary/80 backdrop-blur-xl rounded-2xl shadow-2xl border border-dark-border-primary;
+  }
+  
+  .card-glass {
+    @apply bg-dark-tertiary/50 backdrop-blur-2xl border border-dark-border-secondary;
+  }
+  
+  .btn-primary {
+    @apply bg-gradient-to-r from-brand-primary to-brand-secondary text-white px-6 py-3 rounded-xl font-semibold shadow-glow hover:shadow-glow-lg transition-all duration-300 hover:scale-[1.02] border border-dark-border-accent;
+  }
+  
+  .btn-secondary {
+    @apply bg-dark-elevated hover:bg-dark-elevated/80 text-dark-text-primary px-6 py-3 rounded-xl font-semibold shadow-xl hover:shadow-glow transition-all duration-300 hover:scale-[1.02] border border-dark-border-secondary;
+  }
+  
+  .text-gradient {
+    @apply bg-gradient-to-r from-brand-primary to-brand-secondary bg-clip-text text-transparent;
+  }
+  
+  .input-modern {
+    @apply bg-dark-tertiary/80 border border-dark-border-secondary text-dark-text-primary placeholder-dark-text-tertiary rounded-xl px-4 py-3 focus:border-brand-primary focus:ring-2 focus:ring-brand-primary/20 transition-all duration-200;
+  }
+  
+  .sidebar-item {
+    @apply flex items-center gap-3 px-4 py-3 rounded-xl text-dark-text-secondary hover:text-white font-medium transition-all duration-300 hover:bg-dark-elevated group relative overflow-hidden;
+  }
+  
+  .page-container {
+    @apply min-h-screen bg-dark-primary;
+  }
+  
+  .content-area {
+    @apply bg-dark-primary p-6 space-y-6;
+  }
+}
+
+/* React Calendar Styling */
 .react-calendar {
   width: 100% !important;
   border: none !important;
   font-family: "Inter", sans-serif !important;
+  background: rgba(17, 17, 19, 0.8) !important;
+  border-radius: 1rem !important;
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25) !important;
+  padding: 1rem !important;
+  backdrop-filter: blur(16px) !important;
+  border: 1px solid rgba(39, 39, 42, 1) !important;
+}
+
+.react-calendar__navigation {
+  @apply mb-4;
+}
+
+.react-calendar__navigation button {
+  @apply text-dark-text-primary hover:bg-dark-elevated rounded-lg transition-colors duration-200 !important;
+  border: none !important;
+  background: none !important;
+  font-weight: 500 !important;
 }
 
 .react-calendar__navigation__label__labelText {
-  font-weight: 600;
+  @apply font-semibold text-lg text-dark-text-primary;
+}
+
+.react-calendar__month-view__weekdays {
+  @apply text-dark-text-secondary font-medium text-sm;
+}
+
+.react-calendar__tile {
+  @apply hover:bg-dark-elevated rounded-lg transition-all duration-200 font-medium text-dark-text-primary;
+  border: none !important;
+  background: none !important;
 }
 
 .react-calendar__tile--active {
-  background-color: #c3ebfa !important;
-  color: black !important;
+  @apply bg-gradient-to-r from-brand-primary to-brand-secondary text-white hover:from-brand-primary/90 hover:to-brand-secondary/90 !important;
+  border-radius: 0.5rem !important;
+  box-shadow: 0 4px 12px rgba(99, 102, 241, 0.3) !important;
+}
+
+.react-calendar__tile--now {
+  @apply bg-brand-warning/20 text-brand-warning border border-brand-warning/30;
+  border-radius: 0.5rem !important;
+}
+
+.react-calendar__tile--hover {
+  @apply bg-dark-elevated/60 !important;
+}
+
+/* Big Calendar Styling */
+.rbc-calendar {
+  @apply bg-dark-secondary/80 backdrop-blur-xl rounded-2xl shadow-2xl border border-dark-border-primary;
+  font-family: "Inter", sans-serif !important;
+}
+
+.rbc-toolbar {
+  @apply p-4 border-b border-dark-border-secondary;
 }
 
 .rbc-btn-group:first-child {
@@ -22,7 +129,7 @@
 }
 
 .rbc-toolbar-label {
-  text-align: right !important;
+  @apply text-xl font-semibold text-dark-text-primary text-right pr-5 !important;
   padding: 0px 20px !important;
 }
 
@@ -31,18 +138,18 @@
 }
 
 .rbc-btn-group:last-child button {
+  @apply bg-dark-elevated hover:bg-dark-elevated/80 text-dark-text-primary hover:text-brand-primary rounded-lg border-0 mx-1 px-4 py-2 font-medium transition-all duration-200 !important;
   border: none !important;
-  background-color: #f1f0ff !important;
   margin-left: 2px !important;
 }
 
 .rbc-toolbar button.rbc-active {
-  background-color: #dbdafe !important;
-  box-shadow: none !important;
+  @apply bg-gradient-to-r from-brand-primary to-brand-secondary text-white hover:from-brand-primary/90 hover:to-brand-secondary/90 !important;
+  box-shadow: 0 4px 12px rgba(99, 102, 241, 0.3) !important;
 }
 
 .rbc-time-view {
-  border-color: #eee !important;
+  border-color: rgba(39, 39, 42, 0.8) !important;
 }
 
 .rbc-time-header {
@@ -54,6 +161,7 @@
 }
 
 .rbc-time-gutter.rbc-time-column {
+  @apply text-xs text-dark-text-tertiary font-medium;
   font-size: 12px !important;
 }
 
@@ -62,7 +170,8 @@
 }
 
 .rbc-timeslot-group {
-  background-color: #f7fdff !important;
+  @apply bg-dark-tertiary/30 !important;
+  border-bottom: 1px solid rgba(39, 39, 42, 0.5) !important;
 }
 
 .rbc-day-slot {
@@ -70,39 +179,415 @@
 }
 
 .rbc-event {
+  @apply rounded-lg font-medium shadow-glow border-0 !important;
   border: none !important;
-  color: black !important;
-  padding: 10px !important;
-  margin: 10px !important;
-  width: 99% !important;
+  color: white !important;
+  padding: 8px 12px !important;
+  margin: 2px !important;
+  width: calc(100% - 4px) !important;
 }
 
 .rbc-event:nth-child(1) {
-  background-color: #e2f8ff !important;
+  @apply bg-gradient-to-r from-primary-500 to-primary-400 !important;
 }
 .rbc-event:nth-child(2) {
-  background-color: #fefce8 !important;
+  @apply bg-gradient-to-r from-accent-amber to-accent-orange !important;
 }
 .rbc-event:nth-child(3) {
-  background-color: #f2f1ff !important;
+  @apply bg-gradient-to-r from-secondary-500 to-secondary-400 !important;
 }
 .rbc-event:nth-child(4) {
-  background-color: #fdf2fb !important;
+  @apply bg-gradient-to-r from-accent-rose to-accent-pink !important;
 }
 .rbc-event:nth-child(5) {
-  background-color: #e2f8ff !important;
+  @apply bg-gradient-to-r from-accent-cyan to-accent-teal !important;
 }
 .rbc-event:nth-child(6) {
-  background-color: #fefce8 !important;
+  @apply bg-gradient-to-r from-accent-emerald to-accent-lime !important;
 }
 .rbc-event:nth-child(7) {
-  background-color: #f2f1ff !important;
+  @apply bg-gradient-to-r from-primary-600 to-primary-500 !important;
 }
 .rbc-event:nth-child(8) {
-  background-color: #fdf2fb !important;
+  @apply bg-gradient-to-r from-secondary-600 to-secondary-500 !important;
 }
 
-.rbc-event-label{
-  color: gray !important;
-  margin-bottom: 5px;
+.rbc-event-label {
+  @apply text-white/80 text-xs font-medium !important;
+  margin-bottom: 2px !important;
+}
+
+.rbc-event-content {
+  @apply text-white font-semibold text-sm;
+}
+
+/* Scrollbar Styling */
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+::-webkit-scrollbar-track {
+  @apply bg-transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  @apply bg-dark-elevated rounded-full hover:bg-dark-border-accent;
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  @apply bg-dark-border-accent;
+}
+
+::-webkit-scrollbar-corner {
+  @apply bg-transparent;
+}
+
+/* Modal specific scrollbar */
+.modal-scroll::-webkit-scrollbar {
+  width: 4px;
+}
+
+.modal-scroll::-webkit-scrollbar-track {
+  @apply bg-dark-secondary/50;
+  border-radius: 10px;
+}
+
+.modal-scroll::-webkit-scrollbar-thumb {
+  @apply bg-dark-elevated;
+  border-radius: 10px;
+}
+
+.modal-scroll::-webkit-scrollbar-thumb:hover {
+  @apply bg-dark-border-accent;
+}
+
+/* Custom animations */
+@keyframes shimmer {
+  0% {
+    background-position: -468px 0;
+  }
+  100% {
+    background-position: 468px 0;
+  }
+}
+
+.loading-shimmer {
+  animation: shimmer 1.2s ease-in-out infinite;
+  background: linear-gradient(90deg, #27272a 25%, #3f3f46 50%, #27272a 75%);
+  background-size: 400% 100%;
+}
+
+/* Toast Notification Overrides */
+.Toastify__toast {
+  @apply rounded-xl shadow-2xl border border-dark-border-primary backdrop-blur-xl;
+  background: rgba(17, 17, 19, 0.95) !important;
+}
+
+.Toastify__toast--success {
+  @apply bg-dark-secondary/95 text-brand-success border-brand-success/30;
+  backdrop-filter: blur(16px);
+}
+
+.Toastify__toast--error {
+  @apply bg-dark-secondary/95 text-brand-danger border-brand-danger/30;
+  backdrop-filter: blur(16px);
+}
+
+.Toastify__toast--warning {
+  @apply bg-dark-secondary/95 text-brand-warning border-brand-warning/30;
+  backdrop-filter: blur(16px);
+}
+
+/* Form Elements */
+input, textarea, select {
+  @apply transition-all duration-200 focus:ring-2 focus:ring-primary-500/20 focus:border-primary-500;
+}
+
+/* Button hover effects */
+.btn-hover-lift {
+  @apply transition-all duration-300 hover:scale-[1.02] hover:shadow-glow;
+}
+
+/* Modal overlay fixes */
+.modal-overlay {
+  position: fixed !important;
+  top: 0 !important;
+  left: 0 !important;
+  right: 0 !important;
+  bottom: 0 !important;
+  z-index: 99999 !important;
+  pointer-events: auto !important;
+}
+
+.modal-content {
+  position: relative !important;
+  z-index: 100000 !important;
+  pointer-events: auto !important;
+}
+
+/* Ensure modal is always on top */
+[role="dialog"], .modal-overlay, .modal-content {
+  z-index: 99999 !important;
+}
+
+/* Prevent any element from being above modal */
+* {
+  max-z-index: 99998;
+}
+
+body.modal-open {
+  overflow: hidden !important;
+  position: fixed !important;
+  width: 100% !important;
+}
+
+/* Custom scrollbar styles */
+.scrollbar-thin {
+  scrollbar-width: thin;
+}
+
+.scrollbar-thumb-dark-border-secondary {
+  scrollbar-color: #52525b transparent;
+}
+
+/* Webkit scrollbar styles */
+.scrollbar-thin::-webkit-scrollbar {
+  width: 6px;
+}
+
+.scrollbar-thin::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.scrollbar-thin::-webkit-scrollbar-thumb {
+  background-color: #52525b;
+  border-radius: 3px;
+}
+
+.scrollbar-thin::-webkit-scrollbar-thumb:hover {
+  background-color: #71717a;
+}
+
+/* Search dropdown custom scrollbar */
+.search-results-scroll::-webkit-scrollbar {
+  width: 8px;
+}
+
+.search-results-scroll::-webkit-scrollbar-track {
+  background: rgba(39, 39, 42, 0.3);
+  border-radius: 4px;
+}
+
+.search-results-scroll::-webkit-scrollbar-thumb {
+  background: rgba(82, 82, 91, 0.8);
+  border-radius: 4px;
+}
+
+.search-results-scroll::-webkit-scrollbar-thumb:hover {
+  background: rgba(113, 113, 122, 0.9);
+}
+
+/* Search dropdown portal styling */
+#search-dropdown-root {
+  pointer-events: none !important;
+  z-index: 99999 !important;
+}
+
+#search-dropdown-root > * {
+  pointer-events: auto !important;
+}
+
+/* Ensure search dropdown is always above everything */
+.search-dropdown {
+  z-index: 100000 !important;
+  position: fixed !important;
+}
+
+/* Ensure filter and sort dropdowns are always above table content */
+.filter-dropdown,
+.sort-dropdown {
+  z-index: 99999 !important;
+  position: absolute !important;
+  isolation: isolate;
+}
+
+/* Create proper stacking context for controls */
+.bg-dark-secondary\/80.backdrop-blur-xl {
+  position: relative;
+  z-index: 10;
+  isolation: isolate;
+}
+
+/* Table containers should have lower z-index */
+.card-modern {
+  position: relative;
+  z-index: 1;
+}
+
+/* Ensure table contents don't interfere */
+.content-area table {
+  position: relative;
+  z-index: 1;
+}
+
+/* Additional fallback for any dropdown */
+[class*="absolute"][class*="right-0"][class*="mt-2"] {
+  z-index: 99999 !important;
+  position: absolute !important;
+}
+
+/* Override any conflicting styles */
+.filter-dropdown *,
+.sort-dropdown * {
+  z-index: inherit;
+}
+
+/* Modern Login Form Animations */
+@keyframes fade-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes slide-down {
+  from {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slide-up {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes bounce-gentle {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-5px);
+  }
+}
+
+@keyframes text-shimmer {
+  0% {
+    background-position: -200% center;
+  }
+  100% {
+    background-position: 200% center;
+  }
+}
+
+@keyframes shake {
+  0%, 100% {
+    transform: translateX(0);
+  }
+  25% {
+    transform: translateX(-5px);
+  }
+  75% {
+    transform: translateX(5px);
+  }
+}
+
+@keyframes glow-pulse {
+  0%, 100% {
+    box-shadow: 0 0 20px rgba(99, 102, 241, 0.3);
+  }
+  50% {
+    box-shadow: 0 0 30px rgba(99, 102, 241, 0.5);
+  }
+}
+
+.animate-fade-in {
+  animation: fade-in 0.8s ease-out;
+}
+
+.animate-slide-down {
+  animation: slide-down 0.6s ease-out;
+}
+
+.animate-slide-up {
+  animation: slide-up 0.6s ease-out 0.2s both;
+}
+
+.animate-bounce-gentle {
+  animation: bounce-gentle 2s ease-in-out infinite;
+}
+
+.animate-text-shimmer {
+  background: linear-gradient(90deg, #6366f1, #8b5cf6, #06b6d4, #6366f1);
+  background-size: 400% 400%;
+  animation: text-shimmer 3s ease-in-out infinite;
+}
+
+.animate-shake {
+  animation: shake 0.5s ease-in-out;
+}
+
+.animate-glow-pulse {
+  animation: glow-pulse 2s ease-in-out infinite;
+}
+
+/* Enhanced Shadow Effects */
+.shadow-glow {
+  box-shadow: 0 10px 25px -3px rgba(99, 102, 241, 0.1), 
+              0 4px 6px -2px rgba(99, 102, 241, 0.05),
+              0 0 0 1px rgba(99, 102, 241, 0.1);
+}
+
+.shadow-glow-lg {
+  box-shadow: 0 20px 40px -4px rgba(99, 102, 241, 0.25), 
+              0 8px 16px -4px rgba(99, 102, 241, 0.1),
+              0 0 0 1px rgba(99, 102, 241, 0.1);
+}
+
+/* Modern Input Styling */
+.input-modern {
+  background: rgba(17, 24, 39, 0.5);
+  backdrop-filter: blur(10px);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.input-modern:focus {
+  background: rgba(17, 24, 39, 0.7);
+  transform: translateY(-1px);
+}
+
+.input-modern:hover {
+  background: rgba(17, 24, 39, 0.6);
+}
+
+/* Custom Scrollbar for Login */
+.login-form::-webkit-scrollbar {
+  width: 4px;
+}
+
+.login-form::-webkit-scrollbar-track {
+  background: rgba(17, 24, 39, 0.1);
+  border-radius: 10px;
+}
+
+.login-form::-webkit-scrollbar-thumb {
+  background: linear-gradient(45deg, #6366f1, #8b5cf6);
+  border-radius: 10px;
+}
+
+.login-form::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(45deg, #4f46e5, #7c3aed);
 }

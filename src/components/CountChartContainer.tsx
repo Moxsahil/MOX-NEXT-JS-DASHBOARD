@@ -1,4 +1,3 @@
-import Image from "next/image";
 import CountChart from "./CountChart";
 import prisma from "@/lib/prisma";
 
@@ -10,31 +9,49 @@ const CountChartContainer = async () => {
 
   const boys = data.find((d) => d.sex === "MALE")?._count || 0;
   const girls = data.find((d) => d.sex === "FEMALE")?._count || 0;
+  const total = boys + girls;
 
   return (
-    <div className="bg-white rounded-xl w-full h-full p-4">
-      {/* TITLE */}
-      <div className="flex justify-between items-center">
-        <h1 className="text-lg font-semibold">Students</h1>
-        <Image src="/moreDark.png" alt="" width={20} height={20} />
+    <div className="h-full flex flex-col">
+      {/* CHART AREA */}
+      <div className="flex-1">
+        <CountChart boys={boys} girls={girls} />
       </div>
-      {/* CHART */}
-      <CountChart boys={boys} girls={girls} />
-      {/* BOTTOM */}
-      <div className="flex justify-center gap-16">
-        <div className="flex flex-col gap-1">
-          <div className="w-5 h-5 bg-moxSky rounded-full" />
-          <h1 className="font-bold">{boys}</h1>
-          <h2 className="text-xs text-gray-300">
-            Boys ({Math.round((boys / (boys + girls)) * 100)}%)
-          </h2>
-        </div>
-        <div className="flex flex-col gap-1">
-          <div className="w-5 h-5 bg-moxYellow rounded-full" />
-          <h1 className="font-bold">{girls}</h1>
-          <h2 className="text-xs text-gray-300">
-            Girls ({Math.round((girls / (boys + girls)) * 100)}%)
-          </h2>
+      
+      {/* STATISTICS */}
+      <div className="mt-4 pt-4 border-t border-dark-border-secondary/30">
+        <div className="flex justify-center gap-8">
+          <div className="text-center space-y-2">
+            <div className="flex items-center justify-center gap-2">
+              <div className="w-3 h-3 bg-gradient-to-r from-brand-primary to-brand-secondary rounded-full" />
+              <span className="text-sm font-medium text-dark-text-secondary">Boys</span>
+            </div>
+            <div className="space-y-1">
+              <h3 className="text-xl font-bold text-dark-text-primary tabular-nums">{boys.toLocaleString()}</h3>
+              <div className="flex items-center gap-1 justify-center">
+                <span className="text-xs text-dark-text-tertiary font-medium">
+                  {total > 0 ? Math.round((boys / total) * 100) : 0}%
+                </span>
+              </div>
+            </div>
+          </div>
+          
+          <div className="w-px bg-gradient-to-b from-transparent via-dark-border-secondary to-transparent"></div>
+          
+          <div className="text-center space-y-2">
+            <div className="flex items-center justify-center gap-2">
+              <div className="w-3 h-3 bg-gradient-to-r from-accent-pink to-accent-rose rounded-full" />
+              <span className="text-sm font-medium text-dark-text-secondary">Girls</span>
+            </div>
+            <div className="space-y-1">
+              <h3 className="text-xl font-bold text-dark-text-primary tabular-nums">{girls.toLocaleString()}</h3>
+              <div className="flex items-center gap-1 justify-center">
+                <span className="text-xs text-dark-text-tertiary font-medium">
+                  {total > 0 ? Math.round((girls / total) * 100) : 0}%
+                </span>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </div>

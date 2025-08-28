@@ -23,10 +23,12 @@ export const teacherSchema = z.object({
   username: z
     .string()
     .min(3, { message: "Username must be at least 3 characters long!" })
-    .max(20, { message: "Username must be at most 20 characters long!" }),
+    .max(20, { message: "Username must be at most 20 characters long!" })
+    .regex(/^[a-zA-Z0-9_-]+$/, { message: "Username can only contain letters, numbers, hyphens (-), and underscores (_)" }),
   password: z
     .string()
     .min(8, { message: "Password must be at least 8 characters long!" })
+    .regex(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]/, { message: "Password must contain at least one uppercase letter, one lowercase letter, one number, and one special character" })
     .optional()
     .or(z.literal("")),
   name: z.string().min(1, { message: "First name is required!" }),
@@ -52,10 +54,12 @@ export const studentSchema = z.object({
   username: z
     .string()
     .min(3, { message: "Username must be at least 3 characters long!" })
-    .max(20, { message: "Username must be at most 20 characters long!" }),
+    .max(20, { message: "Username must be at most 20 characters long!" })
+    .regex(/^[a-zA-Z0-9_-]+$/, { message: "Username can only contain letters, numbers, hyphens (-), and underscores (_)" }),
   password: z
     .string()
     .min(8, { message: "Password must be at least 8 characters long!" })
+    .regex(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]/, { message: "Password must contain at least one uppercase letter, one lowercase letter, one number, and one special character" })
     .optional()
     .or(z.literal("")),
   name: z.string().min(1, { message: "First name is required!" }),
@@ -93,10 +97,12 @@ export const parentSchema = z.object({
   username: z
     .string()
     .min(3, { message: "Username must be at least 3 characters long!" })
-    .max(20, { message: "Username must be at most 20 characters long!" }),
+    .max(20, { message: "Username must be at most 20 characters long!" })
+    .regex(/^[a-zA-Z0-9_-]+$/, { message: "Username can only contain letters, numbers, hyphens (-), and underscores (_)" }),
   password: z
     .string()
     .min(8, { message: "Password must be at least 8 characters long!" })
+    .regex(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]/, { message: "Password must contain at least one uppercase letter, one lowercase letter, one number, and one special character" })
     .optional()
     .or(z.literal("")),
   name: z.string().min(1, { message: "First name is required!" }),
@@ -172,15 +178,21 @@ export const announcementSchema = z.object({
 export type AnnouncementSchema = z.infer<typeof announcementSchema>;
 
 export const resultSchema = z.object({
-  id: z.coerce.number().optional(), 
-  score: z.coerce.number().min(0, { message: "Score must be a non-negative number!" }), 
-
-  studentId: z.string().min(1, { message: "Student ID is required!" }),  
-  student: z.object({
-    id: z.string(),  
-    name: z.string(),  
-  }),
-  students: z.array(z.string()),
+  id: z.coerce.number().optional(),
+  score: z.coerce.number().min(0, { message: "Score must be a non-negative number!" }).max(100, { message: "Score cannot exceed 100!" }),
+  studentId: z.string().min(1, { message: "Student is required!" }),
+  examId: z.coerce.number().optional(),
+  assignmentId: z.coerce.number().optional(),
 });
 
 export type ResultSchema = z.infer<typeof resultSchema>;
+
+export const attendanceSchema = z.object({
+  id: z.coerce.number().optional(),
+  date: z.coerce.date({ message: "Date is required!" }),
+  present: z.coerce.boolean({ message: "Attendance status is required!" }),
+  studentId: z.string().min(1, { message: "Student is required!" }),
+  lessonId: z.coerce.number().optional(), // Made optional
+});
+
+export type AttendanceSchema = z.infer<typeof attendanceSchema>;
