@@ -19,8 +19,8 @@ COPY . .
 # Generate Prisma Client
 RUN npx prisma generate
 
-# Build Next.js project
-RUN npm run build
+# Build Next.js project (use next build directly to skip migrations)
+RUN npx next build
 
 # Expose the port that Next.js listens on
 EXPOSE 3000
